@@ -13,6 +13,7 @@ import Havaiano from "../../assets/havaiano.png";
 import Arabe from "../../assets/arabe.png";
 import Irlandes from "../../assets/irlandes.png";
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { Link } from "react-router-dom";
 import {
   CoffeeContainer,
   CoffeeContent,
@@ -140,7 +141,9 @@ export function Coffees() {
                     <Plus color="#8047F8" size={14} weight="bold" />
                   </AmountCart>
                   <Cart>
-                    <ShoppingCart color="white" weight="fill" size={20} />
+                    <Link to="/checkout">
+                      <ShoppingCart color="white" weight="fill" size={20} />
+                    </Link>
                   </Cart>
                 </ContentAmount>
               </ContentPrice>
