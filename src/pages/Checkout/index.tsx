@@ -9,58 +9,79 @@ import {
   Trash,
 } from "phosphor-react";
 import cafe from "../../assets/arabe.png";
+import {
+  CheckoutContainer,
+  ContainerAddress,
+  ContainerPayment,
+  ContentAddress,
+  Inputs,
+  InputsRow,
+  Content,
+  ContainerPaymentButtons,
+  Buttons,
+} from "./styles";
 export function Checkout() {
   return (
-    <div className="row">
-      <div className="column">
+    <CheckoutContainer>
+      <Content>
         <h2> Complete seu pedido</h2>
-        <div className="container-endereço">
-          <div className="filho-endereço">
-            <MapPin />
-            <span>Endereço de Entrega</span>
+        <ContainerAddress>
+          <ContentAddress>
+            <div>
+              <MapPin size={20} color="#C47F17" />
+              <span>Endereço de Entrega</span>
+            </div>
             <p>Informe o endereço onde deseja receber seu pedido</p>
-          </div>
+          </ContentAddress>
 
-          <div className="container-inputs-column">
-            <input type="text" placeholder="90250-440" />
-            <input type="text" placeholder="Rua João Daniel Martinelli" />
+          <Inputs>
+            <input type="text" placeholder="CEP" className="cep" />
+            <input type="text" placeholder="Rua" className="street" />
 
-            <div className="inputs-row">
-              <input type="text" placeholder="102" />
-              <input type="text" placeholder="Complemento" />
-            </div>
-            <div className="inputs-row">
-              <input type="text" placeholder="Farrapos" />
-              <input type="text" placeholder="Porto Alegre" />
-              <input type="text" placeholder="R$" />
-            </div>
-          </div>
-        </div>
+            <InputsRow>
+              <input type="text" placeholder="Número" className="number" />
+              <input
+                type="text"
+                placeholder="Complemento"
+                className="complement"
+              />
+            </InputsRow>
+            <InputsRow>
+              <input
+                type="text"
+                placeholder="Bairro"
+                className="neighborhood"
+              />
+              <input type="text" placeholder="Cidade" className="city" />
+              <input type="text" placeholder="UF" className="state" />
+            </InputsRow>
+          </Inputs>
+        </ContainerAddress>
 
-        <div className="container-pagamento">
+        <ContainerPayment>
           <div className="filho pagamento">
-            <CurrencyDollar />
+            <CurrencyDollar size={22} color="#8047F8" />
             <span>Pagamento</span>
             <p>
               O pagamento é feito na entrega. Escolha a forma que deseja pagar
             </p>
           </div>
-          <div className="filho-meio-pagamento">
-            <button>
-              <CreditCard />
+          <ContainerPaymentButtons>
+            <Buttons>
+              <CreditCard size={16} color="#8047F8" />
               cartão de crédito
-            </button>
-            <button>
-              <Bank />
+            </Buttons>
+            <Buttons>
+              <Bank size={16} color="#8047F8" />
               cartão de débito
-            </button>
-            <button>
-              <Money />
+            </Buttons>
+            <Buttons>
+              <Money size={16} color="#8047F8" />
               dinheiro
-            </button>
-          </div>
-        </div>
-      </div>
+            </Buttons>
+          </ContainerPaymentButtons>
+        </ContainerPayment>
+      </Content>
       <div className="cafes-selecionados">
         <h2>Cafés selecionados</h2>
         <div className="div-cafe-tudo-linha">
@@ -98,6 +119,6 @@ export function Checkout() {
           <button>confirmar pedido</button>
         </div>
       </div>
-    </div>
+    </CheckoutContainer>
   );
 }
