@@ -12,111 +12,114 @@ export const CheckoutContainer = styled.div`
   }
 `;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+export const CoffeeContainer = styled.div`
+  h2 {
+    margin-bottom: 15px;
+  }
 `;
-export const ContainerAddress = styled.div`
-  width: 640px;
+export const CoffeeChosen = styled.div`
+  width: 448px;
   max-width: 100%;
-  background-color: ${(props) => props.theme["base-card"]};
-  border-radius: 6px;
-  padding: 2.5rem;
-`;
-
-export const ContentAddress = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-`;
-
-export const Inputs = styled.div`
-  display: flex;
-  flex-direction: column;
   font-family: "Roboto";
-  font-weight: 400;
-  font-size: 0.875rem;
-  gap: 1rem;
-  input {
-    border-radius: 4px;
-    border: 1px solid ${(props) => props.theme["base-button"]};
-    background-color: ${(props) => props.theme["base-input"]};
-    padding: 0.75rem;
-  }
-
-  input::placeholder {
-    font-family: "Roboto";
-    color: ${(props) => props.theme["base-label"]};
-  }
-
-  .cep .number .neighborhood {
-    width: 200px;
-    max-width: 100%;
-  }
-
-  .street {
-    width: 560px;
-    max-width: 100%;
-  }
-  .complement {
-    width: 348px;
-    max-width: 100%;
-  }
-  .city {
-    width: 272px;
-    max-width: 100%;
-  }
-
-  .state {
-    width: 60px;
-    max-width: 100%;
-  }
-`;
-
-export const InputsRow = styled.div`
-  display: flex;
-  gap: 1.75rem;
-`;
-
-export const ContainerPayment = styled.div`
-  width: 640px;
-  max-width: 100%;
-  background-color: ${(props) => props.theme["base-card"]};
   padding: 2.5rem;
+  background-color: ${(props) => props.theme["base-card"]};
+  border-radius: 6px 44px;
+
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+`;
+
+export const CoffeeContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 64px;
+  }
+
+  span {
+    font-weight: 600;
+    color: ${(props) => props.theme["base-text"]};
+  }
+`;
+
+export const CoffeeDescription = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  align-self: stretch;
-  border-radius: 6px;
+  gap: 8px;
+  p {
+    color: ${(props) => props.theme["base-subtitle"]};
+    font-size: 1rem;
+    font-weight: 400;
+  }
+`;
+export const CoffeeAmount = styled.div`
+  display: flex;
+  gap: 8px;
+
+  button {
+    font-family: "Roboto";
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    background-color: ${(props) => props.theme["base-button"]};
+  }
 `;
 
-export const ContainerPaymentButtons = styled.div`
+export const ButtonAmount = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: ${(props) => props.theme["base-title"]};
+`;
+
+export const ButtonTrash = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${(props) => props.theme["base-text"]};
+  font-weight: 500;
+`;
+
+export const Hr = styled.hr`
+  color: ${(props) => props.theme["base-button"]};
+  opacity: 0.2;
+`;
+
+export const ContainerTotalPayment = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+`;
+
+export const TotalContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  :hover {
-    background-color: ${(props) => props.theme["base-hover"]};
-    color: ${(props) => props.theme["base-subtitle"]};
-  }
-  :active {
-    background-color: ${(props) => props.theme["purple-light"]};
-    border: 1px solid ${(props) => props.theme.purple};
-  }
+
+  color: ${(props) => props.theme["base-text"]};
+  font-size: 0.875rem;
 `;
 
-export const Buttons = styled.button`
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-family: Roboto;
-  font-weight: 500;
+export const Total = styled.span`
+  color: ${(props) => props.theme["base-subtitle"]};
+  font-size: 1.25rem;
+  font-weight: 700;
+`;
+export const BtnSucess = styled.button`
+  font-family: "Roboto";
   display: flex;
-  gap: 12px;
-  color: ${(props) => props.theme["base-text"]};
-  padding: 1rem;
-  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
   border: none;
-  background-color: ${(props) => props.theme["base-button"]};
+  background-color: ${(props) => props.theme.yellow};
+  color: ${(props) => props.theme.white};
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 6px;
   cursor: pointer;
 `;
