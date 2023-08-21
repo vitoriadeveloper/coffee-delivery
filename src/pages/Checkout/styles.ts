@@ -113,6 +113,8 @@ export const BtnSucess = styled.button`
   font-family: "Roboto";
   display: flex;
   align-items: center;
+  width: 368px;
+  max-width: 100%;
   justify-content: center;
   padding: 12px 8px;
   border: none;
@@ -122,4 +124,11 @@ export const BtnSucess = styled.button`
   text-transform: uppercase;
   border-radius: 6px;
   cursor: pointer;
+`;
+
+export const BtnContainerConfirm = styled.div`
+  display: flex;
+  :hover {
+    background: ${(props) => props.theme["yellow-dark"]};
+  }
 `;

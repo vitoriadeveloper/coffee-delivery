@@ -14,13 +14,13 @@ import {
   Hr,
   Total,
   TotalContent,
+  BtnContainerConfirm,
 } from "./styles";
 import { Address } from "../../components/Address";
 export function Checkout() {
   return (
     <CheckoutContainer>
       <Address />
-
       <CoffeeContainer>
         <h2>Cafés selecionados</h2>
         <CoffeeChosen>
@@ -58,7 +58,9 @@ export function Checkout() {
               <Total>R$ 33,20</Total>
             </TotalContent>
           </ContainerTotalPayment>
-          <BtnSucess>confirmar pedido</BtnSucess>
+          <BtnContainerConfirm>
+            <BtnSucess type="submit">confirmar pedido</BtnSucess>
+          </BtnContainerConfirm>
         </CoffeeChosen>
       </CoffeeContainer>
     </CheckoutContainer>
