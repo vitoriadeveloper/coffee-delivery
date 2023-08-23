@@ -31,4 +31,20 @@ export const HeaderCart = styled.span`
   border-radius: 6px;
   padding: 0.5rem;
   cursor: pointer;
+
+  .cart-badge {
+    position: absolute;
+    top: 29px;
+    right: 150px;
+    background-color: ${(props) => props.theme["yellow-dark"]};
+    color: ${(props) => props.theme.white};
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
 `;

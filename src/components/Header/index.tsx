@@ -7,8 +7,16 @@ import {
   HeaderLocation,
   HeaderCart,
 } from "./styles";
+import { useContext } from "use-context-selector";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 export function Header() {
+  const { quantities } = useContext(CoffeeContext);
+
+  const totalItemsInCart = Object.values(quantities).reduce(
+    (acc, quantity) => acc + quantity,
+    0,
+  );
   return (
     <div>
       <HeaderContainer>
@@ -22,6 +30,9 @@ export function Header() {
           </HeaderLocation>
           <HeaderCart>
             <Link to="/checkout">
+              {totalItemsInCart > 0 && (
+                <span className="cart-badge">{totalItemsInCart}</span>
+              )}
               <ShoppingCart color="#C47F17" size={20} weight="fill" />
             </Link>
           </HeaderCart>

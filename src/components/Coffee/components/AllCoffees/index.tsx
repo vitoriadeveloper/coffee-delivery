@@ -9,6 +9,8 @@ import {
   AmountCart,
   Cart,
 } from "./styles";
+import { CoffeeContext } from "../../../../contexts/CoffeeContext";
+import { useContext } from "use-context-selector";
 
 export interface CoffeesPropsType {
   id: number;
@@ -17,22 +19,34 @@ export interface CoffeesPropsType {
   title: string;
   paragraph: string;
   price: number;
-  amount: number;
+  amount?: number;
 }
 
 interface CoffessProps {
   coffeeProps: CoffeesPropsType;
 }
 export function AllCoffees({ coffeeProps }: CoffessProps) {
-  const { id, amount, img, paragraph, price, title, type } = coffeeProps;
+  const { img, paragraph, price, title, type, id } = coffeeProps;
   const formattedPrice = price.toFixed(2).replace(".", ",");
+  const { quantities, setQuantity } = useContext(CoffeeContext);
+  const quantity = quantities[id] || 0;
+
+  function handleQuantityIncrement() {
+    setQuantity(id, quantity + 1);
+  }
+  function handleQuantityDecrement() {
+    if (quantity > 0) {
+      setQuantity(id, quantity - 1);
+    }
+  }
+
   return (
     <CoffeeContent>
       <img src={img} alt="" />
 
       <div className="row">
         {type.map((tag) => (
-          <div key={id} className="tags">
+          <div key={tag} className="tags">
             <CoffeeType>{tag} </CoffeeType>
           </div>
         ))}
@@ -48,11 +62,21 @@ export function AllCoffees({ coffeeProps }: CoffessProps) {
         <ContentAmount>
           <AmountCart>
             <div className="minus">
-              <Minus color="#8047F8" size={14} weight="bold" />
+              <Minus
+                color="#8047F8"
+                size={14}
+                weight="bold"
+                onClick={handleQuantityDecrement}
+              />
             </div>
-            {amount}
+            {quantity}
             <span className="plus">
-              <Plus color="#8047F8" size={14} weight="bold" />
+              <Plus
+                color="#8047F8"
+                size={14}
+                weight="bold"
+                onClick={handleQuantityIncrement}
+              />
             </span>
           </AmountCart>
           <Cart>
