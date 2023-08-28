@@ -17,8 +17,34 @@ import {
   ContainerPaymentButtons,
   Buttons,
 } from "./styles";
+import axios from "axios";
+import { useState } from "react";
+
+interface AddressData {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+}
 
 export function Address() {
+  const [cep, setCep] = useState("");
+  const [address, setAddressData] = useState<AddressData | null>(null);
+  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+
+  const handleSearchCEP = async () => {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      setAddressData(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar cep" + error);
+    }
+  };
+
+  const handlePaymentClick = (paymentType: string) => {
+    setSelectedPayment(paymentType === selectedPayment ? null : paymentType);
+  };
+
   return (
     <Content>
       <h2> Complete seu pedido</h2>
@@ -33,22 +59,53 @@ export function Address() {
           </IconAlignment>
         </ContentAddress>
         <Inputs>
-          <input type="text" placeholder="CEP" className="cep" />
-          <input type="text" placeholder="Rua" className="street" />
-
-          <InputsRow>
-            <input type="text" placeholder="Número" className="number" />
-            <input
-              type="text"
-              placeholder="Complemento"
-              className="complement"
-            />
-          </InputsRow>
-          <InputsRow>
-            <input type="text" placeholder="Bairro" className="neighborhood" />
-            <input type="text" placeholder="Cidade" className="city" />
-            <input type="text" placeholder="UF" className="state" />
-          </InputsRow>
+          <input
+            type="text"
+            placeholder="CEP"
+            className="cep"
+            value={cep}
+            onChange={(e) => setCep(e.target.value)}
+            onKeyDown={handleSearchCEP}
+            required={true}
+          />
+          {address && (
+            <div className="address-cont">
+              <input
+                type="text"
+                placeholder={address.logradouro}
+                disabled
+                className="street"
+              />
+              <InputsRow>
+                <input type="text" placeholder="Número" className="number" />
+                <input
+                  type="text"
+                  placeholder="Complemento"
+                  className="complement"
+                />
+              </InputsRow>
+              <InputsRow>
+                <input
+                  type="text"
+                  placeholder={address.bairro}
+                  disabled
+                  className="neighborhood"
+                />
+                <input
+                  type="text"
+                  placeholder={address.localidade}
+                  disabled
+                  className="city"
+                />
+                <input
+                  type="text"
+                  placeholder={address.uf}
+                  className="state"
+                  disabled
+                />
+              </InputsRow>
+            </div>
+          )}
         </Inputs>
       </ContainerAddress>
       <ContainerPayment>
@@ -61,16 +118,27 @@ export function Address() {
             </p>
           </TextAlignment>
         </IconAlignment>
-        <ContainerPaymentButtons>
-          <Buttons>
+        <ContainerPaymentButtons aria-required>
+          <Buttons
+            onClick={() => handlePaymentClick("creditCard")}
+            className={
+              selectedPayment === "creditCard" ? "selected-button" : ""
+            }
+          >
             <CreditCard size={16} color="#8047F8" />
             cartão de crédito
           </Buttons>
-          <Buttons>
+          <Buttons
+            onClick={() => handlePaymentClick("debitCard")}
+            className={selectedPayment === "debitCard" ? "selected-button" : ""}
+          >
             <Bank size={16} color="#8047F8" />
             cartão de débito
           </Buttons>
-          <Buttons>
+          <Buttons
+            onClick={() => handlePaymentClick("money")}
+            className={selectedPayment === "money" ? "selected-button" : ""}
+          >
             <Money size={16} color="#8047F8" />
             dinheiro
           </Buttons>

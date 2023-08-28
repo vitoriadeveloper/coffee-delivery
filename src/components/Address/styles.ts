@@ -35,6 +35,8 @@ export const Inputs = styled.div`
   font-size: 0.875rem;
   gap: 1rem;
   input {
+    font-family: "Roboto";
+    color: ${(props) => props.theme["base-text"]};
     border-radius: 4px;
     border: 1px solid ${(props) => props.theme["base-button"]};
     background-color: ${(props) => props.theme["base-input"]};
@@ -68,6 +70,12 @@ export const Inputs = styled.div`
     width: 60px;
     max-width: 100%;
   }
+
+  .address-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 export const InputsRow = styled.div`
@@ -96,7 +104,7 @@ export const ContainerPaymentButtons = styled.div`
     background-color: ${(props) => props.theme["base-hover"]};
     color: ${(props) => props.theme["base-subtitle"]};
   }
-  :active {
+  .selected-button {
     background-color: ${(props) => props.theme["purple-light"]};
     border: 1px solid ${(props) => props.theme.purple};
   }
