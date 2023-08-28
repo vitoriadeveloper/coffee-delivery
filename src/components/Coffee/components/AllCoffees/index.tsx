@@ -9,8 +9,9 @@ import {
   AmountCart,
   Cart,
 } from "./styles";
-import { CoffeeContext } from "../../../../contexts/CoffeeContext";
+import { useEffect, useState } from "react";
 import { useContext } from "use-context-selector";
+import { CoffeeContext } from "../../../../contexts/CoffeeContext";
 
 export interface CoffeesPropsType {
   id: number;
@@ -19,27 +20,25 @@ export interface CoffeesPropsType {
   title: string;
   paragraph: string;
   price: number;
-  amount?: number;
+  quantity: number;
 }
 
-interface CoffessProps {
+interface AllCoffeesProps {
   coffeeProps: CoffeesPropsType;
 }
-export function AllCoffees({ coffeeProps }: CoffessProps) {
+
+export function AllCoffees({ coffeeProps }: AllCoffeesProps) {
   const { img, paragraph, price, title, type, id } = coffeeProps;
   const formattedPrice = price.toFixed(2).replace(".", ",");
-  const { quantities, setQuantity } = useContext(CoffeeContext);
-  const quantity = quantities[id] || 0;
+  const [quantity, setQuantity] = useState(0);
+  const { addCoffeeToCart, coffeCart, decrementItemOnCart } =
+    useContext(CoffeeContext);
 
-  function handleQuantityIncrement() {
-    setQuantity(id, quantity + 1);
-  }
-  function handleQuantityDecrement() {
-    if (quantity > 0) {
-      setQuantity(id, quantity - 1);
-    }
-  }
-
+  // Para exibir em tela
+  useEffect(() => {
+    const currentyCoffee = coffeCart.find((coffee) => coffee.id === id);
+    setQuantity(currentyCoffee ? currentyCoffee.quantity : 0);
+  }, [addCoffeeToCart, id, coffeCart]);
   return (
     <CoffeeContent>
       <img src={img} alt="" />
@@ -66,7 +65,7 @@ export function AllCoffees({ coffeeProps }: CoffessProps) {
                 color="#8047F8"
                 size={14}
                 weight="bold"
-                onClick={handleQuantityDecrement}
+                onClick={() => decrementItemOnCart(id)}
               />
             </div>
             {quantity}
@@ -75,7 +74,7 @@ export function AllCoffees({ coffeeProps }: CoffessProps) {
                 color="#8047F8"
                 size={14}
                 weight="bold"
-                onClick={handleQuantityIncrement}
+                onClick={() => addCoffeeToCart(coffeeProps)}
               />
             </span>
           </AmountCart>

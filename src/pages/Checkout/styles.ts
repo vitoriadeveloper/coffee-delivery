@@ -74,6 +74,7 @@ export const ButtonAmount = styled.button`
   align-items: center;
   gap: 10px;
   color: ${(props) => props.theme["base-title"]};
+  cursor: pointer;
 `;
 
 export const ButtonTrash = styled.button`
@@ -82,6 +83,7 @@ export const ButtonTrash = styled.button`
   gap: 4px;
   color: ${(props) => props.theme["base-text"]};
   font-weight: 500;
+  cursor: pointer;
 `;
 
 export const Hr = styled.hr`

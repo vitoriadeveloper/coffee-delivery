@@ -19,7 +19,7 @@ export const coffees = [
     type: ["Tradicional"],
     title: "Expresso Tradicional",
     paragraph: "O tradicional café feito com água quente e grãos moídos",
-    price: 9.9,
+    price: 4.9,
     quantity: 0,
   },
   {
@@ -46,7 +46,7 @@ export const coffees = [
     type: ["Tradicional", "gelado"],
     title: "Expresso Gelado",
     paragraph: "Bebida preparada com café expresso e cubos de gelo",
-    price: 9.9,
+    price: 12.9,
     quantity: 0,
   },
   {
@@ -55,7 +55,7 @@ export const coffees = [
     type: ["Tradicional", " com leite"],
     title: "Café com Leite",
     paragraph: "Meio a meio de expresso tradicional com leite vaporizado",
-    price: 9.9,
+    price: 5.9,
     quantity: 0,
   },
   {
@@ -65,7 +65,7 @@ export const coffees = [
     title: "Latte",
     paragraph:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-    price: 9.9,
+    price: 7.9,
     quantity: 0,
   },
   {
@@ -75,7 +75,7 @@ export const coffees = [
     title: "Capuccino",
     paragraph:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
-    price: 9.9,
+    price: 13.9,
     quantity: 0,
   },
   {
@@ -84,7 +84,7 @@ export const coffees = [
     type: ["Tradicional", " com leite"],
     title: "Macchiato",
     paragraph: "Café expresso misturado com um pouco de leite quente e espuma",
-    price: 9.9,
+    price: 16.9,
     quantity: 0,
   },
   {
@@ -93,7 +93,7 @@ export const coffees = [
     type: ["Tradicional", " com leite"],
     title: "Mocaccino",
     paragraph: "Café expresso com calda de chocolate, pouco leite e espuma",
-    price: 9.9,
+    price: 19.9,
     quantity: 0,
   },
   {
@@ -102,7 +102,7 @@ export const coffees = [
     type: ["especial", " com leite"],
     title: "Chocolate Quente",
     paragraph: "Bebida feita com chocolate dissolvido no leite quente e café",
-    price: 9.9,
+    price: 29.9,
     quantity: 0,
   },
   {
@@ -121,7 +121,7 @@ export const coffees = [
     type: ["especial"],
     title: "Havaiano",
     paragraph: "Bebida adocicada preparada com café e leite de coco",
-    price: 9.9,
+    price: 19.9,
     quantity: 0,
   },
   {
@@ -130,7 +130,7 @@ export const coffees = [
     type: ["especial"],
     title: "Árabe",
     paragraph: "Bebida preparada com grãos de café árabe e especiarias",
-    price: 9.9,
+    price: 19.9,
     quantity: 0,
   },
   {
@@ -139,7 +139,7 @@ export const coffees = [
     type: ["especial", " alcoólico"],
     title: "Irlandês",
     paragraph: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-    price: 9.9,
+    price: 29.9,
     quantity: 0,
   },
 ];

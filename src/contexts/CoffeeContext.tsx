@@ -1,20 +1,22 @@
 import { ReactNode, useState } from "react";
 import { createContext } from "use-context-selector";
+import { CoffeesPropsType } from "../components/Coffee/components/AllCoffees";
 
-interface Coffees {
+export interface CoffeesDetails {
   id: number;
   img: string;
   type: string[];
   title: string;
   paragraph: string;
   price: number;
-  amount?: number;
+  quantity: number;
 }
 
 interface CoffeeContextType {
-  coffee: Coffees[];
-  quantities: { [key: number]: number }; // Um objeto para rastrear as quantidades por id
-  setQuantity: (id: number, quantity: number) => void; // Função para definir a quantidade de um item
+  coffeCart: CoffeesDetails[];
+  addCoffeeToCart: (coffeeProps: CoffeesDetails) => void;
+  decrementItemOnCart: (id: number) => void;
+  handleRemoveItemsOnCart: (id: number) => void;
 }
 
 interface CoffeeProviderProps {
@@ -24,19 +26,67 @@ interface CoffeeProviderProps {
 export const CoffeeContext = createContext({} as CoffeeContextType);
 
 export function CoffeeProvider({ children }: CoffeeProviderProps) {
-  const [coffee, setCoffee] = useState<Coffees[]>([]);
-  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const [coffeCart, SetCoffeeCart] = useState<CoffeesDetails[]>([]);
 
-  // Função para definir a quantidade de um item com base no id
-  const setQuantity = (id: number, quantity: number) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [id]: quantity,
-    }));
-  };
+  function addCoffeeToCart(coffeeProps: CoffeesPropsType) {
+    const currentyCoffeeIndex = coffeCart.findIndex(
+      (coffee) => coffee.id === coffeeProps.id,
+    );
 
+    // Se existir café no carrinho, aumente a quantidade para mais 1
+    if (currentyCoffeeIndex >= 0) {
+      // pega o que ja tem no carrinho e adiciona
+      SetCoffeeCart((state) =>
+        state.map((coffee, index) =>
+          index === currentyCoffeeIndex
+            ? { ...coffeeProps, quantity: coffee.quantity + 1 }
+            : coffee,
+        ),
+      );
+    } else {
+      SetCoffeeCart((state) => [...state, { ...coffeeProps, quantity: 1 }]);
+    }
+  }
+  // para diminuir item
+
+  function decrementItemOnCart(id: number) {
+    const currentyCoffeeIndex = coffeCart.findIndex(
+      (coffee) => coffee.id === id,
+    );
+    if (currentyCoffeeIndex >= 0) {
+      // pega o que ja tem no carrinho e adiciona
+      SetCoffeeCart(
+        (state) =>
+          state
+            .map((coffee, index) =>
+              index === currentyCoffeeIndex
+                ? { ...coffee, quantity: coffee.quantity - 1 }
+                : coffee,
+            )
+            .filter((coffee) => coffee.quantity > 0), // para não diminuir negativo
+      );
+    }
+  }
+  function handleRemoveItemsOnCart(id: number) {
+    const currentyCoffeeIndex = coffeCart.findIndex(
+      (coffee) => coffee.id === id,
+    );
+
+    if (currentyCoffeeIndex >= 0) {
+      SetCoffeeCart((state) =>
+        state.filter((_, index) => index !== currentyCoffeeIndex),
+      );
+    }
+  }
   return (
-    <CoffeeContext.Provider value={{ coffee, quantities, setQuantity }}>
+    <CoffeeContext.Provider
+      value={{
+        decrementItemOnCart,
+        addCoffeeToCart,
+        coffeCart,
+        handleRemoveItemsOnCart,
+      }}
+    >
       {children}
     </CoffeeContext.Provider>
   );

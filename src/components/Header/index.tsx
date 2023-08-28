@@ -11,12 +11,7 @@ import { useContext } from "use-context-selector";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 export function Header() {
-  const { quantities } = useContext(CoffeeContext);
-
-  const totalItemsInCart = Object.values(quantities).reduce(
-    (acc, quantity) => acc + quantity,
-    0,
-  );
+  const { coffeCart } = useContext(CoffeeContext);
   return (
     <div>
       <HeaderContainer>
@@ -30,8 +25,13 @@ export function Header() {
           </HeaderLocation>
           <HeaderCart>
             <Link to="/checkout">
-              {totalItemsInCart > 0 && (
-                <span className="cart-badge">{totalItemsInCart}</span>
+              {coffeCart.map(
+                (coffee) =>
+                  coffee.quantity > 0 && (
+                    <span className="cart-badge" key={coffee.id}>
+                      {coffee.quantity}
+                    </span>
+                  ),
               )}
               <ShoppingCart color="#C47F17" size={20} weight="fill" />
             </Link>
