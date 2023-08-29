@@ -18,8 +18,11 @@ import {
 import { Address } from "../../components/Address";
 import { useContext } from "use-context-selector";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { Link } from "react-router-dom";
+import { AddressContext } from "../../contexts/AddressContext";
 
 export function Checkout() {
+  const { address } = useContext(AddressContext);
   const {
     addCoffeeToCart,
     coffeCart,
@@ -37,6 +40,8 @@ export function Checkout() {
   function formatValueBRL(value: number) {
     return value.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
   }
+  const isButtonEnabled = coffeCart.length > 0 && address && address.logradouro;
+
   return (
     <CheckoutContainer>
       <Address />
@@ -93,7 +98,18 @@ export function Checkout() {
             </TotalContent>
           </ContainerTotalPayment>
           <BtnContainerConfirm>
-            <BtnSucess type="submit">confirmar pedido</BtnSucess>
+            <Link
+              to={isButtonEnabled ? "/sucess" : "#"}
+              className={isButtonEnabled ? "" : "disabled-container"}
+            >
+              <BtnSucess
+                type="submit"
+                disabled={!isButtonEnabled}
+                className={!isButtonEnabled ? "disabled-container" : ""}
+              >
+                confirmar pedido
+              </BtnSucess>
+            </Link>
           </BtnContainerConfirm>
         </CoffeeChosen>
       </CoffeeContainer>

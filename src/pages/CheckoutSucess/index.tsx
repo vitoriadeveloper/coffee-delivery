@@ -7,8 +7,11 @@ import {
   SucessContent,
   SucessTitle,
 } from "./styles";
+import { useContext } from "use-context-selector";
+import { AddressContext } from "../../contexts/AddressContext";
 
 export function Sucess() {
+  const { address } = useContext(AddressContext);
   return (
     <ContainerSucess>
       <SucessTitle>
@@ -22,9 +25,14 @@ export function Sucess() {
             </span>
             <IconContent>
               <span>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{" "}
+                <strong>
+                  {address ? `${address.logradouro},` : "Carregando..."}
+                </strong>
               </span>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>
+                {address?.bairro} - {address?.localidade}, {address?.uf}
+              </span>
             </IconContent>
           </IconAlignment>
           <IconAlignment>

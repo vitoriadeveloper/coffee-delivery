@@ -19,18 +19,17 @@ import {
 } from "./styles";
 import axios from "axios";
 import { useState } from "react";
-
-interface AddressData {
-  logradouro: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-}
+import { useContext } from "use-context-selector";
+import { AddressContext } from "../../contexts/AddressContext";
 
 export function Address() {
   const [cep, setCep] = useState("");
-  const [address, setAddressData] = useState<AddressData | null>(null);
+  const { address, setAddressData } = useContext(AddressContext);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+
+  const handlePaymentClick = (paymentType: string) => {
+    setSelectedPayment(paymentType === selectedPayment ? null : paymentType);
+  };
 
   const handleSearchCEP = async () => {
     try {
@@ -39,10 +38,6 @@ export function Address() {
     } catch (error) {
       console.error("Erro ao buscar cep" + error);
     }
-  };
-
-  const handlePaymentClick = (paymentType: string) => {
-    setSelectedPayment(paymentType === selectedPayment ? null : paymentType);
   };
 
   return (

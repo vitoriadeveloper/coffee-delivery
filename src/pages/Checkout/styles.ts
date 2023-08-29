@@ -126,11 +126,20 @@ export const BtnSucess = styled.button`
   text-transform: uppercase;
   border-radius: 6px;
   cursor: pointer;
+  .disabled-container {
+    cursor: not-allowed;
+    text-decoration: none;
+  }
 `;
 
 export const BtnContainerConfirm = styled.div`
   display: flex;
   :hover {
     background: ${(props) => props.theme["yellow-dark"]};
+    border-radius: 6px;
+  }
+  .disabled-container {
+    cursor: not-allowed;
+    text-decoration: none;
   }
 `;
