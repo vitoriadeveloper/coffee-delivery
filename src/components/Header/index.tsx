@@ -9,9 +9,11 @@ import {
 } from "./styles";
 import { useContext } from "use-context-selector";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { AddressContext } from "../../contexts/AddressContext";
 
 export function Header() {
   const { coffeCart } = useContext(CoffeeContext);
+  const { address } = useContext(AddressContext);
 
   const totalOnCart = coffeCart.reduce(
     (total, coffee) => total + coffee.quantity,
@@ -26,7 +28,7 @@ export function Header() {
         <HeaderContent>
           <HeaderLocation>
             <MapPin color="#8047F8" size={20} weight="fill" />
-            Salvador, BA
+            {address ? `${address.localidade}, ${address.uf}` : "Salvador, BA"}
           </HeaderLocation>
           <HeaderCart>
             <Link to="/checkout">

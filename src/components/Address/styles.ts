@@ -4,6 +4,9 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  @media (max-width: 720px) {
+    align-items: center;
+  }
 `;
 export const ContainerAddress = styled.div`
   width: 640px;
@@ -11,6 +14,10 @@ export const ContainerAddress = styled.div`
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
   padding: 2.5rem;
+  @media (max-width: 720px) {
+    width: 300px;
+    padding: 1rem;
+  }
 `;
 
 export const ContentAddress = styled.div`
@@ -22,10 +29,20 @@ export const ContentAddress = styled.div`
 export const IconAlignment = styled.div`
   display: flex;
   gap: 8px;
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const TextAlignment = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 720px) {
+    p {
+      display: none;
+    }
+  }
 `;
 export const Inputs = styled.div`
   display: flex;
@@ -76,11 +93,40 @@ export const Inputs = styled.div`
     flex-direction: column;
     gap: 1rem;
   }
+  @media (max-width: 720px) {
+    padding: 0;
+    width: 280px;
+
+    .state {
+      width: 272px;
+    }
+    .city {
+      width: 272px;
+    }
+    .number {
+      width: 272px;
+    }
+    .cep {
+      width: 272px;
+    }
+    .complement {
+      width: 272px;
+    }
+    .street {
+      width: 272px;
+    }
+    .neighborhood {
+      width: 272px;
+    }
+  }
 `;
 
 export const InputsRow = styled.div`
   display: flex;
   gap: 1.75rem;
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
 `;
 
 export const ContainerPayment = styled.div`
@@ -93,6 +139,14 @@ export const ContainerPayment = styled.div`
   gap: 2rem;
   align-self: stretch;
   border-radius: 6px;
+
+  @media (max-width: 720px) {
+    width: 300px;
+    padding: 1rem;
+    justify-content: center;
+    align-self: center;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const ContainerPaymentButtons = styled.div`
@@ -107,6 +161,10 @@ export const ContainerPaymentButtons = styled.div`
   .selected-button {
     background-color: ${(props) => props.theme["purple-light"]};
     border: 1px solid ${(props) => props.theme.purple};
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
   }
 `;
 
@@ -123,4 +181,9 @@ export const Buttons = styled.button`
   border: none;
   background-color: ${(props) => props.theme["base-button"]};
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    width: 220px;
+    align-items: center;
+  }
 `;

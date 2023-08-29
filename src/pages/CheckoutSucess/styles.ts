@@ -5,6 +5,15 @@ export const ContainerSucess = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 10rem;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    gap: 1rem;
+
+    img {
+      width: 200px;
+    }
+  }
 `;
 
 export const SucessTitle = styled.div`
@@ -23,6 +32,17 @@ export const SucessTitle = styled.div`
     font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+    p {
+      display: none;
+    }
   }
 `;
 
@@ -44,6 +64,10 @@ export const SucessContent = styled.div`
     font-size: 1rem;
     font-weight: 400;
     color: ${(props) => props.theme["base-text"]};
+  }
+
+  @media (max-width: 720px) {
+    width: 300px;
   }
 `;
 
@@ -70,6 +94,10 @@ export const IconAlignment = styled.div`
     background-color: ${(props) => props.theme["yellow-dark"]};
     padding: 8px;
     border-radius: 100%;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
   }
 `;
 

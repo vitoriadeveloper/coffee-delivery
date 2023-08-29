@@ -10,11 +10,23 @@ export const CheckoutContainer = styled.div`
     font-size: 1.125rem;
     font-weight: 700;
   }
+
+  @media (max-width: 720px) {
+    padding: 0;
+    flex-direction: column;
+  }
 `;
 
 export const CoffeeContainer = styled.div`
   h2 {
     margin-bottom: 15px;
+  }
+
+  @media (max-width: 720px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
   }
 `;
 export const CoffeeChosen = styled.div`
@@ -28,6 +40,9 @@ export const CoffeeChosen = styled.div`
   display: flex;
   gap: 24px;
   flex-direction: column;
+  @media (max-width: 720px) {
+    width: 300px;
+  }
 `;
 
 export const CoffeeContent = styled.div`
@@ -41,6 +56,13 @@ export const CoffeeContent = styled.div`
   span {
     font-weight: 600;
     color: ${(props) => props.theme["base-text"]};
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 `;
 
@@ -126,9 +148,9 @@ export const BtnSucess = styled.button`
   text-transform: uppercase;
   border-radius: 6px;
   cursor: pointer;
-  .disabled-container {
-    cursor: not-allowed;
-    text-decoration: none;
+
+  @media (max-width: 720px) {
+    width: 230px;
   }
 `;
 
@@ -140,6 +162,5 @@ export const BtnContainerConfirm = styled.div`
   }
   .disabled-container {
     cursor: not-allowed;
-    text-decoration: none;
   }
 `;

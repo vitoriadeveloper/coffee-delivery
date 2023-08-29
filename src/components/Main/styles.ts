@@ -6,6 +6,15 @@ export const HomeContainer = styled.div`
   gap: 3.5rem;
   padding: 2rem 10rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 720px) {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 350px;
+    }
+  }
 `;
 
 export const HomeContentColumn = styled.div`

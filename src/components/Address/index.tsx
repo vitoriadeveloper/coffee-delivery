@@ -21,15 +21,13 @@ import axios from "axios";
 import { useState } from "react";
 import { useContext } from "use-context-selector";
 import { AddressContext } from "../../contexts/AddressContext";
+import { PaymentContext } from "../../contexts/PaymentContext";
 
 export function Address() {
   const [cep, setCep] = useState("");
-  const { address, setAddressData } = useContext(AddressContext);
-  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
-
-  const handlePaymentClick = (paymentType: string) => {
-    setSelectedPayment(paymentType === selectedPayment ? null : paymentType);
-  };
+  const { address, setAddressData, number, setNumber } =
+    useContext(AddressContext);
+  const { handlePaymentClick, selectedPayment } = useContext(PaymentContext);
 
   const handleSearchCEP = async () => {
     try {
@@ -72,7 +70,13 @@ export function Address() {
                 className="street"
               />
               <InputsRow>
-                <input type="text" placeholder="Número" className="number" />
+                <input
+                  type="text"
+                  value={number}
+                  placeholder="número"
+                  onChange={(e) => setNumber(e.target.value)}
+                  className="number"
+                />
                 <input
                   type="text"
                   placeholder="Complemento"

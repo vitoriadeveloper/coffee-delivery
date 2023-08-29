@@ -28,6 +28,7 @@ export function Checkout() {
     coffeCart,
     decrementItemOnCart,
     handleRemoveItemsOnCart,
+    clearCart,
   } = useContext(CoffeeContext);
   const delivery = 18.9;
 
@@ -99,6 +100,7 @@ export function Checkout() {
           </ContainerTotalPayment>
           <BtnContainerConfirm>
             <Link
+              style={{ textDecoration: "none" }}
               to={isButtonEnabled ? "/sucess" : "#"}
               className={isButtonEnabled ? "" : "disabled-container"}
             >
@@ -106,6 +108,11 @@ export function Checkout() {
                 type="submit"
                 disabled={!isButtonEnabled}
                 className={!isButtonEnabled ? "disabled-container" : ""}
+                onClick={() => {
+                  if (isButtonEnabled) {
+                    clearCart();
+                  }
+                }}
               >
                 confirmar pedido
               </BtnSucess>

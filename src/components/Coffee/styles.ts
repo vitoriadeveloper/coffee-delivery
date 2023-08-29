@@ -14,9 +14,23 @@ export const CoffeeContainer = styled.div`
     line-height: 130%;
     margin-bottom: 3.125rem;
   }
+
+  @media (max-width: 720px) {
+    padding: 0;
+    margin-bottom: 5rem;
+    h1 {
+      width: 100%;
+      text-align: center;
+    }
+  }
 `;
 export const DivRow = styled.div`
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+
+  @media (max-width: 720px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;

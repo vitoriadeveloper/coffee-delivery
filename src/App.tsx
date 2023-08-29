@@ -5,14 +5,17 @@ import { Router } from "./Router";
 import { BrowserRouter } from "react-router-dom";
 import { CoffeeProvider } from "./contexts/CoffeeContext";
 import { AddressProvider } from "./contexts/AddressContext";
+import { PaymentProvider } from "./contexts/PaymentContext";
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <CoffeeProvider>
-          <AddressProvider>
-            <Router />
-          </AddressProvider>
+          <PaymentProvider>
+            <AddressProvider>
+              <Router />
+            </AddressProvider>
+          </PaymentProvider>
         </CoffeeProvider>
       </BrowserRouter>
       <GlobalStyle />

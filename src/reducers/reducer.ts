@@ -4,6 +4,7 @@ enum ActionTypes {
   ADD_COFFEE_ON_CART = "ADD_COFFEE_ON_CART",
   DECREMENT_ITEM_ON_CART = "DECREMENT_ITEM_ON_CART",
   REMOVE_ITEM_ON_CART = "REMOVE_ITEM_ON_CART",
+  CLEAR_CART = "CLEAR_CART",
 }
 interface PayloadTypes {
   id?: number;
@@ -35,6 +36,9 @@ export function CartDetailsReducer(state: CoffeesDetails[], action: Action) {
         return removeItemFromCart(state, payload.id);
       }
       return state;
+
+    case ActionTypes.CLEAR_CART:
+      return [];
 
     default:
       return state;

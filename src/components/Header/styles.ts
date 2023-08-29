@@ -6,6 +6,10 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 10rem;
+
+  @media (max-width: 720px) {
+    padding: 1.5rem 0.5rem;
+  }
 `;
 
 export const HeaderContent = styled.div`
@@ -46,5 +50,12 @@ export const HeaderCart = styled.span`
     justify-content: center;
     font-size: 12px;
     font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .cart-badge {
+      top: 14px;
+      right: 5px;
+    }
   }
 `;

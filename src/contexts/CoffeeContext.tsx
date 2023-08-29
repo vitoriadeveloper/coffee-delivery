@@ -4,6 +4,7 @@ import { CoffeesPropsType } from "../components/Coffee/components/AllCoffees";
 import { CartDetailsReducer } from "../reducers/reducer";
 import {
   AddCoffeeOnCartAction,
+  ClearCartAction,
   DecrementCoffeeOnCartAction,
   RemoveCoffeeOnCartAction,
 } from "../reducers/actions";
@@ -23,6 +24,7 @@ interface CoffeeContextType {
   addCoffeeToCart: (coffeeProps: CoffeesDetails) => void;
   decrementItemOnCart: (id: number) => void;
   handleRemoveItemsOnCart: (id: number) => void;
+  clearCart: () => void;
 }
 
 interface CoffeeProviderProps {
@@ -44,6 +46,11 @@ export function CoffeeProvider({ children }: CoffeeProviderProps) {
   function handleRemoveItemsOnCart(id: number) {
     return dispatch(RemoveCoffeeOnCartAction(id));
   }
+
+  function clearCart() {
+    dispatch(ClearCartAction());
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -51,6 +58,7 @@ export function CoffeeProvider({ children }: CoffeeProviderProps) {
         addCoffeeToCart,
         coffeCart,
         handleRemoveItemsOnCart,
+        clearCart,
       }}
     >
       {children}

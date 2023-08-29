@@ -9,9 +9,21 @@ import {
 } from "./styles";
 import { useContext } from "use-context-selector";
 import { AddressContext } from "../../contexts/AddressContext";
+import { PaymentContext } from "../../contexts/PaymentContext";
 
 export function Sucess() {
-  const { address } = useContext(AddressContext);
+  const { address, number } = useContext(AddressContext);
+  const { selectedPayment } = useContext(PaymentContext);
+  let paymentText = selectedPayment;
+
+  if (selectedPayment === "debitCard") {
+    paymentText = selectedPayment.replace("debitCard", "Cartão de Débito");
+  } else if (selectedPayment === "creditCard") {
+    paymentText = selectedPayment.replace("creditCard", "Cartão de Crédito");
+  } else if (selectedPayment === "money") {
+    paymentText = selectedPayment.replace("money", "Dinheiro");
+  }
+
   return (
     <ContainerSucess>
       <SucessTitle>
@@ -27,7 +39,9 @@ export function Sucess() {
               <span>
                 Entrega em{" "}
                 <strong>
-                  {address ? `${address.logradouro},` : "Carregando..."}
+                  {address
+                    ? `${address.logradouro}, ${number}`
+                    : "Carregando..."}
                 </strong>
               </span>
               <span>
@@ -50,7 +64,7 @@ export function Sucess() {
             </span>
             <IconContent>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de Crédito </strong>
+              <strong>{paymentText ?? "Cartão de Crédito"} </strong>
             </IconContent>
           </IconAlignment>
         </SucessContent>
