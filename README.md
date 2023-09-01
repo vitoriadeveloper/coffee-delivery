@@ -16,7 +16,7 @@ Challenge created by RocketSeat's Ignite trail in the React course
 
 - [x] - It should be able to add coffe to the cart
 - [x] - It should be able to query CEP
-- [x] - It shold be able to get the total items in the cart
+- [x] - It should be able to get the total items in the cart
 - [x] - It should be able to decrease the quantity of items int the cart
 - [x] - It should be able to remove items from the cart
 - [x] - It should only be possible to go to the Sucess page if you have fulfilled the Checkout page requirements.
